@@ -1,0 +1,28 @@
+body {
+    background-color: #ddd;
+}
+.login-register-wrapper .tab-content {
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding-right: 15px;
+    padding-top: 15px;
+    border-radius: 0 0 5px 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 0 rgba(0,0,0,.15);
+    margin-bottom: 25px;
+}
+.login-register-wrapper .header {
+    margin-top: 0;
+}
+.login-register-wrapper .nav-tabs > li {
+    width: 50%;
+    text-align: center;
+}
+#login-form {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}

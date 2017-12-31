@@ -1,0 +1,319 @@
+/*
+	960 Grid System ~ Text CSS.
+	Learn more ~ http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+/* =Basic HTML
+--------------------------------------------------------------------------------*/
+
+body
+{
+	font: 13px/1.5 Tahoma, Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
+
+a:focus
+{
+	outline: 1px dotted invert;
+}
+
+hr
+{
+	border-color: #ccc;
+	border-style: solid;
+	border-width: 1px 0 0;
+	clear: both;
+	height: 0;
+}
+
+/* =Headings
+--------------------------------------------------------------------------------*/
+
+h1
+{
+	font-size: 25px;
+}
+
+h2
+{
+	font-size: 23px;
+}
+
+h3
+{
+	font-size: 21px;
+}
+
+h4
+{
+	font-size: 19px;
+}
+
+h5
+{
+	font-size: 17px;
+}
+
+h6
+{
+	font-size: 15px;
+}
+
+/* =Spacing
+--------------------------------------------------------------------------------*/
+
+ol
+{
+	list-style: decimal;
+}
+
+ul
+{
+	list-style: square;
+}
+
+li
+{
+	margin-left: 30px;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+
+address,
+fieldset
+{
+	margin-bottom: 20px;
+}
+/* -- CH15 - Contact -- */
+
+
+.contact-form,
+.upload-form {
+    margin: 0 auto 40px;
+    padding: 25px 15px 25px 10px;
+    text-align: center;
+}
+
+.contact-form h1,
+.upload-form h1 {
+    font-size: 1.1em;
+    font-weight: 400;
+    display: inline-block;
+    border-bottom: 1px solid #E0BB6D;
+    margin: 5px 0 0;
+    color: #E0BB6D;
+}
+
+.contact-form h2,
+.upload-form h2 {
+    font-size: 1em;
+    font-weight: 400;
+    display: block;
+    border-bottom: none;
+    margin: 5px 35px;
+    color: #E0BB6D;
+}
+
+.contact-form h2 span {
+    font-size: .9em;
+    font-weight: 500;
+    display: block;
+    border-bottom: none;
+    text-transform: none;
+    font-style: initial;
+    margin: 0;
+    color: #828282;
+}
+
+.thankyou {
+    text-align: center;
+}
+
+.thankyou h2 {
+    padding: 30px 0;
+    border: none;
+    text-align: center;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.con-form label {
+    display: block;
+    margin: 0px;
+    text-align: left;
+}
+
+.con-form input[type="text"] {
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.4em;
+    border: 1px solid rgba(130,130,130,.3);
+}
+
+::-webkit-input-placeholder,
+:-moz-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder  {
+   color: #828282;
+}
+
+.con-forms-cols {
+    width: 45%;
+    display:  inline-block;
+    vertical-align: top;
+    margin: 2%;
+}
+
+.con-form textarea {
+    width: 100%;
+    height: 78px;
+    border: none;
+    border: 1px solid rgba(130,130,130,.3);
+    padding: 6px;
+}
+
+.upload-comment {
+    width: 93%!important;
+}
+
+.con-form input[type="submit"],
+.pmt-form input[type="submit"] {
+    font-size: .9em;
+    text-transform: uppercase;
+    font-style: initial;
+    font-weight: 500;
+    background: #1B2234;
+    padding: .4em 1em;
+    border: 2px solid #1A1D24;
+    cursor: pointer;
+    color: #be9849;
+    
+
+    -webkit-transition: all .3s; /* For Safari 3.1 to 6.0 */
+    transition: all .3s;
+}
+
+.con-form input[type="submit"]:hover,
+.pmt-form input[type="submit"]:hover {
+    background: #1A1D24;
+    border-color: #1B2234;
+}
+
+.con-form label {
+	font-size: 1.4em;
+    font-weight: 500;
+    color: #828282;
+}
+
+.con-form label span{
+    font-size: .9em;
+    font-weight: 400;
+    display: block;
+    border-bottom: none;
+    text-transform: none;
+    font-style: initial;
+    margin: 0;
+    color: #828282;
+}
+
+.con-form .tour-info {
+    text-align: left;
+    margin: 10px 0 20px;
+}
+
+.con-form input[type="checkbox"] {
+    margin: 8px 5px 8px 12px;
+    display: inline-block;
+    line-height: 30px;
+}
+
+.con-form-address {
+    margin: 20px 0 0;
+}
+
+.tour-info {
+    color: #828282;
+    font-size: .9em;
+}
+
+.con-form select {
+    height: 38px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 5px 3px 3px 5px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.4em;
+    border: 1px solid rgba(130,130,130,.3);
+}
+
+.con-form select option {
+    padding: 5px 0;
+}
+
+.image-upload {
+    text-align: left;
+}
+
+.image-upload input[type="submit"] {
+    font-size: 12px;
+}
+
+
+
+#totalPrice h1 {
+    border: none;
+    font-style: normal;
+    font-size: 1.4em;
+    color: #9B9B9B;
+    text-transform: none;
+    line-height: 1.6em;
+}
+
+#totalPrice h2 {
+    margin: 25px 0 10px;
+    letter-spacing: 1px;
+    padding-bottom: 3px;
+}
+
+#totalPrice span {
+    font-style: normal;
+    padding-right: 5px;
+    font-size: .9em;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
