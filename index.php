@@ -155,7 +155,7 @@ if(isset($_SESSION['role']) && ($_SESSION['role'] != 'ADMIN' && $_SESSION['role'
             <div class="block">
                 <div id="employee_table">
                     <?php
-                    include_once("search-ajax.php");
+                    
                     ?>
                 </div>
             </div>
@@ -245,6 +245,25 @@ if(isset($_SESSION['role']) && ($_SESSION['role'] != 'ADMIN' && $_SESSION['role'
         document.getElementById('abc').style.display = "none";
     }
 
+    function log(msg) {
+        console.log(msg);
+    }
+
+    function tickAll() {
+        var array = document.getElementsByTagName("input");
+
+        for(var i = 0; i < array.length; i++)
+        {
+            log(array[i].name);
+
+            if(array[i].name === "chkid")
+            {
+                //if(array[i].className == YOUR_CLASS_NAME) {
+                array[i].checked = document.getElementById('select-all').checked;
+                //}
+            }
+        }        
+    }
 </script>
 <script type="text/javascript">
     var_sel_id_arr = [ ]; //array to store selected ids

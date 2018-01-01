@@ -602,8 +602,10 @@ function saveLead(lead_id){
 
     today = dd+"/"+mm+"/"+yyyy + " " +today.getHours() + ":" + today.getMinutes()+":" + today.getSeconds();
 
+    var current_user = document.getElementById('current_user').value;
+
     var prev_note = document.getElementById('prev_note').innerHTML;
-    var v_notes =  ('['+today+'] ' + document.getElementById('noteid').value) + '<br>' + prev_note;
+    var v_notes =  ('['+today+'] ' + ' - ' + current_user + ' - ' + document.getElementById('noteid').value) + '<br>' + prev_note;
     v_notes=v_notes.trim();
     // alert('notes is' + v_notes);
     //if (!alphanumeric(v_notes))

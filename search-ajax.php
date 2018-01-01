@@ -67,7 +67,9 @@ if (isset($_POST['Search'])){
         $v_lead_sts_str=" AND status_code = '" .$v_lead_status ."' ";
     }
     else
-    {$v_lead_sts_str=' ';}
+    {
+        $v_lead_sts_str=' ';
+    }
 
     // for wall insulation type
     if (isset($_POST['insulation_type']) and !is_null($_POST['insulation_type']) and !empty($_POST['insulation_type']) )
@@ -164,6 +166,7 @@ if (isset($_POST['Search'])){
     }
 
     //echo $search_query;
+    //exit;
 
 }
 
@@ -202,18 +205,16 @@ $rslt = mysqli_query($conn, $select_query);
 $records = mysqli_num_rows($rslt);
 $records_pages = ceil($records / $per_page);
 
-//echo '<br/> Records:'.$records.'<br/> records per page'.$records_pages;
-
 echo "<h5>";
 echo "Jobs &nbsp". $num_rows;
 echo "</h5>";
 echo "<table id='index_table' border='1'  border-collapse: collapse; width=100% class='tablesorter'>";
 echo "<thead>";
 echo "<tr bgcolor='#1ab2ff'>";
-echo "<th style='font-weight:bold'>"; echo "<input type='checkbox' id='select-all'/>"; echo "</th>";
+echo "<th style='font-weight:bold'>"; echo "<input type='checkbox' id='select-all' onClick='tickAll();'/>"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Job No"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Date & Time"; echo "</th>";
-/*echo "<th style='font-weight:bold'>"; echo "Completed Date"; echo "</th>";*/
+
 echo "<th style='font-weight:bold'>"; echo "Customer Name"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Address"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Post Code"; echo "</th>";
@@ -222,11 +223,8 @@ echo "<th style='font-weight:bold'>"; echo "Telephone 2"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Email"; echo "</th>";
 echo "<th style='font-weight:bold; width: 300px; max-width: initial'>"; echo "Notes"; echo "</th>";
 
-//echo "<td style='font-weight:bold'>"; echo "view order"; echo "</td>";
 echo "</tr>";
 echo "</thead>";
-
-//$sno = 1;
 
 $col="#ffffff";//default white color
 echo "<tbody>";
@@ -366,6 +364,8 @@ $next = $page + 1;
             ?>
         </ul>
     </nav>
+
+
 </div>
 
 <script>
@@ -381,7 +381,7 @@ $next = $page + 1;
             7: { sorter: false },
             8: { sorter: false },
             9: { sorter: false }
-            //10: { sorter: false }
         }
     });
+
 </script>

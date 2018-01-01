@@ -1,6 +1,24 @@
 <?php
 	include_once("db_connection.php");
-	 ?>
+
+  //Status check
+  if (isset($_GET['status']) && !is_null($_GET['status']) && !empty($_GET['status']))
+  {
+      $v_lead_status = $_GET['status'];
+  }
+
+  //For Status Check
+  if (isset($_POST['status']) and !is_null($_POST['status']) and !empty($_POST['status']))
+  {
+      $v_lead_status=$_POST['status'];
+  }
+  else
+  {
+      $v_lead_sts_str=' ';
+  }
+
+?>
+
 <header class="page-head">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -47,7 +65,7 @@
         $res = mysqli_query($conn, "SELECT * FROM installation_status ");
         while ($row = $res->fetch_assoc()){
         ?>
-        <option value="<?php echo $row['status_code']; ?>" <?php echo (isset($_POST['status']) && $_POST['status'] === $row["status_code"]) ? 'selected' : '' ?> ><?php echo $row['status_desc']; ?></option>
+        <option value="<?php echo $row['status_code']; ?>" <?php echo ($v_lead_status === $row["status_code"]) ? 'selected' : '' ?> ><?php echo $row['status_desc']; ?></option>
 
         <?php
         // close while loop

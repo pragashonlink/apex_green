@@ -6,7 +6,7 @@
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="new_jobs.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=NEW">
             <img src="img/cl.png" alt="Profile Pic" />
             <label>New Jobs</label>
         </a>
@@ -18,13 +18,13 @@
     </li>-->
 
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="completed.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=COMP">
             <img src="img/comp.png" alt="Profile Pic" />
             <label>Completed</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="installation.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=INST">
             <img src="img/cons.ico" alt="Profile Pic" />
             <label>Installation</label>
         </a>
@@ -36,7 +36,7 @@
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="assesment.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=ASMT">
             <img src="img/asmt.png" alt="Profile Pic" />
             <label>Assesments</label>
         </a>
@@ -48,61 +48,61 @@
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="qualified_leads.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=QULI">
             <img src="img/ql.png" alt="Profile Pic" />
             <label>Qualified</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="ready_to_book.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=RDTB">
             <img src="img/rdtb.png" alt="Profile Pic" />
             <label>Heating</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="missed_jobs.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=MISSED">
             <img src="img/cons.ico" alt="Profile Pic" />
             <label>Missed Jobs</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="visit_completed.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=VC">
             <img src="img/house.png" alt="Profile Pic" />
             <label>Visit Completed</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="unable_to_contact.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=UTA">
             <img src="img/utc.png" alt="Profile Pic" />
             <label>Unable to Contact</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="call_back_not_ready_yet.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=CBNR">
             <img src="img/house.png" alt="Profile Pic" />
             <label>Call back not Ready</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="reminders.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=REM">
             <img src="img/clock.jpg" alt="Profile Pic" />
             <label>Reminders</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="incompleted.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=ICOM">
             <img src="img/cros.jpg" alt="Profile Pic" />
             <label>Area not Covered</label>
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="rejection.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=RJCT">
             <img src="img/cros.jpg" alt="Profile Pic" />
             <label>Rejection</label>
         </a>
     </li>
     <li img src="img/img-profile.jpg" alt="Profile Pic">
-        <a class="menuitem" style="font-size: 12px !important; " href="rejection_after_ assessment.php">
+        <a class="menuitem" style="font-size: 12px !important; " href="index.php?status=RAA">
             <img src="img/house.png" alt="Profile Pic" />
             <label>Rejection after Assessment</label>
         </a>
