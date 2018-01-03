@@ -136,15 +136,26 @@ if(isset($_SESSION['role'])) {
                                 <?php
                                 //print 'print year = '. $year;
                                 //print 'print week = '. $week;
+
                                 $week_var=$week;
                                 $year_var=$year;
                                 if($week_var < 10) {
                                     $week_var = '0'. $week_var;
                                 }
                                 $var_d = strtotime($year_var ."W". $week_var . $day);
+
+                                
+                                //exit;
+
                                 //echo "time= ". $var_d;
                                 //echo "<td>". date('l', $var_d) ."<br>". date('d M', $var_d) ."</td>";
-                                echo date('F Y', $var_d);
+                                if ($var_d == '') {
+                                    echo date('F Y');
+                                }
+                                else {
+                                    echo date('F Y', $var_d);
+                                }
+                                
                                 $v_date_srch_start=date('d-m-Y', $var_d);
                                 $v_date_srch_end=date('d-m-Y', $var_d+3600*24*7);
                                 $v_month = date('m', $var_d);

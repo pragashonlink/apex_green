@@ -215,13 +215,20 @@ echo "<th style='font-weight:bold'>"; echo "<input type='checkbox' id='select-al
 echo "<th style='font-weight:bold'>"; echo "Job No"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Date & Time"; echo "</th>";
 
+if ($v_lead_status == 'COMP') {
+    echo "<th style='font-weight:bold'>"; echo "Completed Date"; echo "</th>";
+}
+
 echo "<th style='font-weight:bold'>"; echo "Customer Name"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Address"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Post Code"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Telephone 1"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Telephone 2"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Email"; echo "</th>";
-echo "<th style='font-weight:bold; width: 300px; max-width: initial'>"; echo "Notes"; echo "</th>";
+
+if ($v_lead_status != 'COMP') {
+    echo "<th style='font-weight:bold; width: 300px; max-width: initial'>"; echo "Notes"; echo "</th>";
+}
 
 echo "</tr>";
 echo "</thead>";
@@ -307,6 +314,11 @@ if($num_rows > 0) {
         //echo date(($insert_time));
         //echo "<td>"; echo $row  ["d/m/Y" "insert_time"]; echo "</td>";
         echo "<td>"; echo $row ["itime"]; echo "</td>";
+
+        if ($v_lead_status == 'COMP') {
+            echo "<td>"; echo $row ["completed_date"]; echo "</td>";
+        }
+
         /*echo "<td>"; echo $row ["completed_date"]; echo "</td>";*/
         //echo "<td>"; echo mysqli_fetch_array($res_event)["start"]; echo "</td>";
         echo "<td>"; echo strip_tags($row["title"] . ' ' . $row["forename"] . ' ' . $row["surname"]); echo "</td>";
@@ -315,7 +327,11 @@ if($num_rows > 0) {
         echo "<td>"; echo $row["phone"]; echo "</td>";
         echo "<td>"; echo $row["altno"]; echo "</td>";
         echo "<td>"; echo $row["email"]; echo "</td>";
-        echo "<td><div class='note'>"; echo $row["notes"]; echo "</div></td>";
+
+        if ($v_lead_status != 'COMP') {
+            echo "<td><div class='note'>"; echo $row["notes"]; echo "</div></td>";
+        }
+        
         echo "</tr>";
         //$sno=$sno+1;
     }
