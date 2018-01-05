@@ -222,6 +222,7 @@ if ($v_lead_status == 'COMP') {
 echo "<th style='font-weight:bold'>"; echo "Customer Name"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Address"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Post Code"; echo "</th>";
+
 echo "<th style='font-weight:bold'>"; echo "Telephone 1"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Telephone 2"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Email"; echo "</th>";
@@ -230,11 +231,14 @@ if ($v_lead_status != 'COMP') {
     echo "<th style='font-weight:bold; width: 300px; max-width: initial'>"; echo "Notes"; echo "</th>";
 }
 
+
 echo "</tr>";
 echo "</thead>";
 
+
 $col="#ffffff";//default white color
 echo "<tbody>";
+
 if($num_rows > 0) {
     while($row=mysqli_fetch_array($res)) {
         if ($row["status_code"] == 'ASMT') //Assesment Check
@@ -324,6 +328,7 @@ if($num_rows > 0) {
         echo "<td>"; echo strip_tags($row["title"] . ' ' . $row["forename"] . ' ' . $row["surname"]); echo "</td>";
         echo "<td>"; echo $row["address"]; echo "</td>";
         echo "<td>"; echo strtoupper ($row["postcode"]); echo "</td>";
+
         echo "<td>"; echo $row["phone"]; echo "</td>";
         echo "<td>"; echo $row["altno"]; echo "</td>";
         echo "<td>"; echo $row["email"]; echo "</td>";
@@ -380,24 +385,45 @@ $next = $page + 1;
             ?>
         </ul>
     </nav>
-
-
 </div>
 
 <script>
-    $("body #employee_table table").tablesorter({
-        sortList: [[1,0], [5,0]],
-        headers: {
-            0: { sorter: false },
-            1: { sorter: false },
-            2: { sorter: false },
-            3: { sorter: false },
-            4: { sorter: false },
-            6: { sorter: false },
-            7: { sorter: false },
-            8: { sorter: false },
-            9: { sorter: false }
-        }
-    });
+
+    var status = '<?php echo $v_lead_status ?>';
+
+    if (status === 'COMP') {
+        $("body #employee_table table").tablesorter({
+            dateFormat: 'uk',
+            sortInitialOrder: 'desc',
+            sortList: [[1,0], [3,0], [6,0]],
+            headers: {
+                0: { sorter: false },
+                1: { sorter: false },
+                2: { sorter: false },
+                4: { sorter: false },
+                5: { sorter: false },
+                7: { sorter: false },
+                8: { sorter: false },
+                9: { sorter: false }
+            }
+        });
+    }
+    else {
+        $("body #employee_table table").tablesorter({
+            sortList: [[1,0], [5,0]],
+            headers: {
+                0: { sorter: false },
+                1: { sorter: false },
+                2: { sorter: false },
+                3: { sorter: false },
+                4: { sorter: false },
+                6: { sorter: false },
+                7: { sorter: false },
+                8: { sorter: false },
+                9: { sorter: false }
+            }
+        });        
+    }
+
 
 </script>
