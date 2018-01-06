@@ -202,13 +202,13 @@ if(isset($_SESSION['role'])) {
                         <tr>
                             <td>Time Slot</td>
                             <?php
+
                             $week_var1=$week;
                             $year_var1=$year;
 
                             if($week_var1 < 10) {
                                 $week_var1 = '0'. $week_var1;
                             }
-
 
                             for($day= 1; $day <= 7; $day++) {
                                 $d = strtotime($year_var1 ."W". $week_var1 . $day);

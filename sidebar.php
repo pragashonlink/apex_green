@@ -30,7 +30,7 @@
         </a>
     </li>
     <li>
-        <a class="menuitem" style="font-size: 12px !important; " href="display_cal.php?status=INST">
+        <a class="menuitem" style="font-size: 12px !important; " href="display_cal.php?status=INST&week=<?php echo (int)date('W')?>&year=<?php echo date('Y')?>">
             <img src="img/cal.png" alt="Profile Pic" />
             <label>Installation Calender</label>
         </a>
@@ -42,7 +42,7 @@
         </a>
     </li>
     <li>
-        <a class="menuitem"style="font-size: 12px !important; " href="display_cal.php?status=ASMT">
+        <a class="menuitem"style="font-size: 12px !important; " href="display_cal.php?status=ASMT&week=<?php echo (int)date('W')?>&year=<?php echo date('Y')?>">
             <img src="img/cal.png" alt="Profile Pic" />
             <label>Assesments Calender</label>
         </a>

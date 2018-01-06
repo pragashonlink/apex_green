@@ -154,7 +154,6 @@
 
     <input  type="submit" id="send" value="Search" class="option-box" style="margin-top: 0;" size=1 name="Search" /><br>
 
- 
 </form>
 </header>
 <script type="text/javascript">
