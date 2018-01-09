@@ -124,8 +124,8 @@
                     ?>
 
                     <?php
-                    $year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
-                    $week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
+                    $year = (isset($_GET['year'])) ? $_GET['year'] : (int)date("Y");
+                    $week = (isset($_GET['week'])) ? $_GET['week'] : (int)date('W');
 
                     $v_id = $_GET['id'];
                     $v_status = $_GET['status'];

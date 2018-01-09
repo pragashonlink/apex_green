@@ -66,7 +66,10 @@ property_type,boiler_period,owner,benefits,cavity_charges,cavity_area,cavity_gap
 			    VALUES('$siteID','$postCode','$title','$forename','$surname','$address','$mobile','$altno',
 								   '$email','$wall_insulation_type','$roof_insulation_type','$propertyPeriod','$fuel_type','$property_type','$boiler_period','$owner','$benefits','$cavity_charges','$cavity_area','$cavity_gap','$loft_charges','$loft_area','$insu_required','$lead_source','$v_created_by')";
 		//echo $Insert_query;
-	//echo "Insert_query is : ". $Insert_query;												 
+
+echo "Insert_query is : ". $Insert_query;												 
+exit;
+
 if (!mysqli_query($conn,$Insert_query))
 {
   echo("Error description: " . mysqli_error($conn));

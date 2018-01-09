@@ -28,7 +28,7 @@ include_once("db_connection.php");
 $var1 = $_GET['id'];
 //echo "Value in get value  " . $var1 ;
 
-$query = "select i.ID, i.insert_time,i.title,i.forename,i.surname,i.address,i.postcode,i.phone, i.altno,i.email, i.email_sent, i.email_sent_date, i.fuel_type,i.notes,i.wall_insulation_type,i.roof_insulation_type,i.owner,i.boiler_period,i.property_type,i.propertyPeriod,i.benefits ,i.hdn_payment_type,i.lead_source,i.created_by,i.cavity_charges,i.cavity_area,i.cavity_gap,i.loft_charges, i.loft_area, i.insu_required,ifnull(lse.status_code,'NEW') status_code,Date_format(lse.start,'%d-%m-%Y %r') start, IFNULL(sd.name, i.created_by) AS source from insulations i left outer join lead_status_event lse on i.ID = lse.id 
+$query = "select i.ID, i.insert_time,i.title,i.forename,i.surname,i.address,i.postcode,i.phone, i.altno,i.email, i.email_sent, i.email_sent_date, i.fuel_type,i.notes,i.wall_insulation_type,i.roof_insulation_type,i.owner,i.boiler_period,i.property_type,i.propertyPeriod,i.benefits ,i.hdn_payment_type,i.lead_source,i.created_by,i.cavity_charges,i.cavity_area,i.cavity_gap,i.loft_charges, i.loft_area, i.insu_required,ifnull(lse.status_code,'NEW') status_code,Date_format(lse.start,'%d-%m-%Y %r') start, IFNULL(sd.name, i.lead_source) AS source from insulations i left outer join lead_status_event lse on i.ID = lse.id 
     left outer join site_details as sd on i.siteId = sd.Id where i.id = $var1";
 //echo "query : " . $query;
 

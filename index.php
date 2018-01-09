@@ -201,7 +201,7 @@ if(isset($_SESSION['role']) && ($_SESSION['role'] != 'ADMIN' && $_SESSION['role'
     <!-- Popup Div Ends Here -->
 </div>
 
-<input type="hidden" value="insert_time > DATE_SUB(NOW(), INTERVAL 60 DAY)" id="where_clause"/>
+<input type="hidden" value="insert_time > DATE_SUB(NOW(), INTERVAL 90 DAY)" id="where_clause"/>
 <input type="hidden" value="index" id="view"/>
 </body>
 <!-- Body Ends Here -->
