@@ -276,9 +276,6 @@ if(isset($_SESSION['role']) && ($_SESSION['role'] != 'ADMIN' && $_SESSION['role'
 
     }
 
-    //function to export to excel
-
-
     function send_email(vsub,vmsg) {
         //alert("reay to send"+vsub+vmsg);
         console.log(vsub);

@@ -8,9 +8,9 @@
 		</font>
 	</div>
     <div class="floatright">
-		<div class="floatleft">
-			<img src="img/img-profile.jpg" alt="Profile Pic" />
-		</div>
+        <div class="floatleft">
+            &nbsp; <img src="img/img-profile.jpg" alt="Profile Pic" />
+        </div>           
         <div class="floatleft marginleft10">
 			<ul class="inline-ul floatleft">
 				<li>Hello <?php echo $var_user; ?> </li>
@@ -20,6 +20,12 @@
             <br/>
             <span class="small grey"></span>
         </div>
+        <div class="floatleft marginleft10">
+            <ul class="inline-ul floatleft">
+                <li><a href='index.php?status=REM'>Notifications (<span id="notification_count"></span>)</a></li>
+            </ul>
+            <br/>
+        </div>        
     </div>
     <div class="clear"></div>
 </div>
@@ -59,3 +65,22 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    function getNotificationCount() {
+        $.ajax({
+            type: "GET",
+            url: 'notification_count.php',
+            data: {},
+            success:function(count) {
+                $("#notification_count").html(count);
+            }
+        });    
+    }
+
+    $( document ).ready(function() {
+        getNotificationCount();
+    });    
+
+</script>

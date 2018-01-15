@@ -85,13 +85,12 @@ if (isset($_POST['Search'])){
     {
         $v_benefits=$_POST['benefits'];
         if ($v_benefits=='Yes')
-        { $v_ben_str=" AND (benefits != 'No Benefits - NO' AND benefits != ' ' AND benefits != 'No' AND benefits NOT LIKE '%I do not%')" ;
-            //$v_ben_str=" AND ifnull(benefits,'No Benefits - NO') != 'No Benefits - NO' ";
+        { 
+            $v_ben_str=" AND (benefits != 'No Benefits - NO' AND benefits != ' ' AND benefits != 'No' AND benefits NOT LIKE '%I do not%')" ;
         }
         if ($v_benefits=='No')
         {
             $v_ben_str=" AND (benefits = 'No Benefits - NO' OR benefits = ' ' OR benefits = 'No' OR benefits LIKE '%I do not%')" ;
-            //$v_ben_str=" AND ifnull(benefits,'No Benefits - NO') = 'No Benefits - NO' ";
         }
     }
     else
@@ -148,7 +147,9 @@ if (isset($_POST['Search'])){
     {
         $v_from = $_POST['from'];
         $v_to = $_POST['to'];
-        $v_date_str = " cast(insert_time as date) between str_to_date('$v_from','%d/%m/%Y')  and str_to_date('$v_to','%d/%m/%Y')";
+
+        $v_date_str = "( cast(insert_time as date) between str_to_date('$v_from','%d/%m/%Y')  and str_to_date('$v_to','%d/%m/%Y') ";
+        $v_date_str .= " OR cast(start as date) between str_to_date('$v_from','%d/%m/%Y')  and str_to_date('$v_to','%d/%m/%Y') )";
     }
 
     if (empty($v_date_str))
@@ -158,17 +159,21 @@ if (isset($_POST['Search'])){
     if ($v_keword_str==" ")
     {
         //echo 'No 2';
-        $search_query = "select * from (select i.ID, i.insert_time,i.lead_source,i.siteID,i.fuel_type,i.wall_insulation_type,benefits , Date_format(i.insert_time,'%d-%m-%Y %r') itime,Date_format(i.completed_date,'%d-%m-%Y') completed_date,i.title,i.forename,i.surname,i.address,i.postcode,i.phone, i.altno,i.email,i.notes,ifnull(lse.status_code,'NEW') status_code from insulations i left outer join lead_status_event lse on i.ID = lse.id) i where " . $v_date_str. " " .$v_lead_sts_str. " " . $v_lead_source_str. " " . $v_site_str. " " .$v_fuel_str." " .$v_insulation_str." " .$v_ben_str. " order by id desc";
+        $search_query = "select * from (select i.ID, i.insert_time,i.lead_source,i.siteID,i.fuel_type,i.wall_insulation_type,benefits , Date_format(i.insert_time,'%d-%m-%Y %r') itime,Date_format(i.completed_date,'%d-%m-%Y') completed_date,i.title,i.forename,i.surname,i.address,i.postcode,i.phone, i.altno,i.email,i.notes,ifnull(lse.status_code,'NEW') status_code, lse.start, lse.reminder_notes from insulations i left outer join lead_status_event lse on i.ID = lse.id) i where " . $v_date_str. " " .$v_lead_sts_str. " " . $v_lead_source_str. " " . $v_site_str. " " .$v_fuel_str." " .$v_insulation_str." " .$v_ben_str. " order by id desc";
     }
     else
     {$search_query = $v_keword_str;
         //echo 'No 1'
     }
 
-    //echo $search_query;
-    //exit;
-
 }
+
+if ($v_lead_status == 'REM') 
+{
+    $update_status = "UPDATE lead_status_event SET status = 'R' WHERE status = 'N' AND status_code = 'REM'";
+    mysqli_query($conn, $update_status);
+}
+
 
 if (!empty($search_query) AND !is_null($search_query)) {$select_query = $search_query;
     //echo 'i have search';
@@ -190,8 +195,8 @@ if (!empty($search_query) AND !is_null($search_query)) {$select_query = $search_
                         ifnull(lse.status_code,'NEW') status_code
                      FROM
                         insulations i
-                        LEFT OUTER JOIN lead_status_event lse
-                        ON i.ID = lse.id
+                     LEFT OUTER JOIN lead_status_event lse
+                     ON i.ID = lse.id
                      WHERE insert_time > DATE_SUB(NOW(), INTERVAL 90 DAY)
                      ORDER BY id DESC"; /*YEAR(insert_time) = YEAR(CURRENT_DATE()) AND MONTH(insert_time) = MONTH(CURRENT_DATE()) AND*/
     //echo 'i dont have search';
@@ -224,7 +229,16 @@ echo "<th style='font-weight:bold'>"; echo "Address"; echo "</th>";
 echo "<th style='font-weight:bold'>"; echo "Post Code"; echo "</th>";
 
 echo "<th style='font-weight:bold'>"; echo "Telephone 1"; echo "</th>";
-echo "<th style='font-weight:bold'>"; echo "Telephone 2"; echo "</th>";
+
+if ($v_lead_status == 'REM')
+{
+    echo "<th style='font-weight:bold'>"; echo "Reminder"; echo "</th>";    
+}
+else 
+{
+    echo "<th style='font-weight:bold'>"; echo "Telephone 2"; echo "</th>";
+}
+
 echo "<th style='font-weight:bold'>"; echo "Email"; echo "</th>";
 
 if ($v_lead_status != 'COMP') {
@@ -239,8 +253,41 @@ echo "</thead>";
 $col="#ffffff";//default white color
 echo "<tbody>";
 
+$post_codes = '';//array();
+$rows = array();
+
 if($num_rows > 0) {
     while($row=mysqli_fetch_array($res)) {
+        $post_codes = $post_codes . "'".$row['postcode']."'" . ',';
+        //array_push($post_codes, $row['postcode']);
+        array_push($rows, $row);
+
+        //echo "'".$row['postcode']."'" . ', ';
+    }
+}
+
+$post_codes = substr($post_codes, 0, -2);
+$post_codes = $post_codes . "'";
+
+$sql = "SELECT * FROM post_codes WHERE post_code IN (".$post_codes.")";
+$post_codes_query = mysqli_query($conn, $sql);
+$num_rows_post_codes = mysqli_num_rows($post_codes_query);
+
+$post_codes_found = array();
+
+if($num_rows_post_codes > 0) {
+    while($row = mysqli_fetch_array($post_codes_query)) {
+        array_push($post_codes_found, $row['post_code']);
+    }
+}
+
+$index = 0;
+
+if($num_rows > 0) {
+    while($index < sizeof($rows)) {
+        $row = $rows[$index];
+        $index += 1;
+
         if ($row["status_code"] == 'ASMT') //Assesment Check
         {
             $col="##80ff80";//light blue
@@ -327,10 +374,28 @@ if($num_rows > 0) {
         //echo "<td>"; echo mysqli_fetch_array($res_event)["start"]; echo "</td>";
         echo "<td>"; echo strip_tags($row["title"] . ' ' . $row["forename"] . ' ' . $row["surname"]); echo "</td>";
         echo "<td>"; echo $row["address"]; echo "</td>";
-        echo "<td>"; echo strtoupper ($row["postcode"]); echo "</td>";
+
+        if ( array_search($row['postcode'], $post_codes_found) === FALSE )
+        {
+            echo "<td title='Urban'>"; echo strtoupper ($row["postcode"]); echo "</td>";    
+        }
+        else
+        {
+            echo "<td style='color:white;background:green;font-weight:bold' title='Rural'>"; echo strtoupper ($row["postcode"]); echo "</td>";
+        }
 
         echo "<td>"; echo $row["phone"]; echo "</td>";
-        echo "<td>"; echo $row["altno"]; echo "</td>";
+
+        if ($v_lead_status == 'REM')
+        {
+            echo "<td>"; echo $row["reminder_notes"]; echo "</td>"; 
+        }
+        else 
+        {
+            echo "<td>"; echo $row["altno"]; echo "</td>";
+        }   
+             
+        
         echo "<td>"; echo $row["email"]; echo "</td>";
 
         if ($v_lead_status != 'COMP') {
